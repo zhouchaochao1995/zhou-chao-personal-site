@@ -185,8 +185,18 @@ function usePortfolioMotion(rootRef) {
 
       const visualGroups = root.querySelectorAll('.work-category > .vi-carousel, .work-category > .gallery-row, .work-category > .image-slot-feature, .work-category > .image-mosaic, .approach-cards');
       visualGroups.forEach((group) => {
+        if (group.matches('.vi-carousel')) {
+          gsap.fromTo(group, { autoAlpha: 0 }, {
+            autoAlpha: 1,
+            duration: 0.85,
+            ease: 'power2.out',
+            clearProps: 'opacity',
+            scrollTrigger: { trigger: group, start: 'top 84%', once: true },
+          });
+          return;
+        }
         const selector = group.matches('.approach-cards') ? '.approach-card-glow' : '.image-slot-glow, .mosaic-cell-glow';
-        const cards = group.matches('.vi-carousel') ? [group] : group.querySelectorAll(selector);
+        const cards = group.querySelectorAll(selector);
         if (!cards.length) return;
         gsap.fromTo(cards,
           { y: 68, scale: 0.94, autoAlpha: 0 },
