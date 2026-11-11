@@ -126,11 +126,11 @@ body *{font-family:Arial,"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans
 @media(max-width:1024px){.portfolio-hero .hero-content{width:calc(100% - 96px)}.about-section>.section-heading,.about-section>.about-grid,.about-section>.experience-block,.approach-section>.section-heading,.approach-section>.approach-top,.approach-section>.approach-cards,.approach-section>.tool-strip,.works-archive>.section-heading,.works-archive>.projects-intro,.work-category,.works-archive>.work-note{width:calc(100% - 96px)}.work-section-heading h3{font-size:55px!important}.gallery-row{--row-height:clamp(260px,36vw,370px)}.gallery-row-compact{--row-height:clamp(150px,18vw,185px)}.gallery-row-render{--row-height:clamp(220px,28vw,280px)}.gallery-row-tall{--row-height:clamp(440px,70vw,720px)}}
 @media(max-width:680px){.portfolio-hero .hero-content{width:calc(100% - 48px);padding:74px 0 63px}.about-section>.section-heading,.about-section>.about-grid,.about-section>.experience-block,.approach-section>.section-heading,.approach-section>.approach-top,.approach-section>.approach-cards,.approach-section>.tool-strip,.works-archive>.section-heading,.works-archive>.projects-intro,.work-category,.works-archive>.work-note{width:calc(100% - 44px)}.works-archive.section{padding:76px 0 80px}.works-archive>.projects-intro{display:block;padding:41px 0 31px}.works-archive>.projects-intro p{margin-top:18px}.work-category{margin-top:158px!important}.work-section-heading{grid-template-columns:minmax(0,1fr) minmax(110px,150px);align-items:start;gap:14px;padding:0;margin-bottom:24px}.work-section-heading h3{font-size:30px!important;line-height:1.25;margin:0 0 9px}.work-section-heading p{font-size:15px!important;line-height:1.65}.work-section-meta{gap:12px;padding-top:3px}.work-section-number,.work-section-aside{font-size:15px!important;line-height:1.5;white-space:normal}.gallery-row{--row-height:230px;gap:10px}.gallery-row-compact{--row-height:145px}.gallery-row-render{--row-height:210px}.gallery-row-tall{--row-height:440px}.aigc-font-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.aigc-font-card{border-radius:14px}.image-slot-feature .image-slot-art{aspect-ratio:1.45/1}.image-slot-art{padding:14px}.image-mosaic{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.image-mosaic-cell{aspect-ratio:1.5}.drawing-mosaic{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.archive-tool-strip{align-items:flex-start;gap:18px}.archive-tool-strip>div{gap:12px 18px}.about-grid{gap:34px}.portrait-wrap{width:min(78%,340px);margin:0 auto}.site-footer{max-width:none}}
 
-/* The reel alone is viewport-wide; surrounding content keeps the 1500px grid. */
+/* Keep the offline reel aligned with the centered content grid. */
 .works-archive .work-category-offline > .offline-concave-carousel {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  margin-left: 0;
+  transform: none;
 }
 .brand-mosaic .image-mosaic-cell{aspect-ratio:16/9;background:none;border:0}
 .brand-mosaic .image-mosaic-cell img{object-fit:cover;outline:1px solid rgba(192,237,121,.24);outline-offset:-1px}
