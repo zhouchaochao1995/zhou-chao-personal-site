@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { createPortal } from 'react-dom';
 
 const characterSets = [
   {
@@ -81,7 +82,7 @@ export default function IPCharacterGallery() {
         })}
       </div>
 
-      {activeImage && (
+      {activeImage && createPortal(
         <div
           className="ip-image-lightbox-backdrop"
           role="presentation"
@@ -93,7 +94,8 @@ export default function IPCharacterGallery() {
             <button className="ip-image-lightbox-control ip-image-lightbox-previous" type="button" onClick={() => stepImage(-1)} aria-label="查看上一张"><ChevronLeft size={25} /></button>
             <button className="ip-image-lightbox-control ip-image-lightbox-next" type="button" onClick={() => stepImage(1)} aria-label="查看下一张"><ChevronRight size={25} /></button>
           </section>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
