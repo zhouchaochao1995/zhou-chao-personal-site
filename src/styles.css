@@ -1361,6 +1361,10 @@ body *{font-family:Arial,"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans
   border: 1px solid rgba(255, 255, 255, .2) !important;
   box-sizing: border-box;
 }
+/* The offline-material reel keeps its controls but has frameless image cards. */
+.portfolio-page .work-category-offline .offline-concave-carousel .concave-panel-media {
+  border: 0 !important;
+}
 .portfolio-page .prism-card-frame::after { border: 0 !important; }
 .portfolio-page .vi-carousel .circular-carousel__frame {
   box-shadow: 0 12px 36px rgba(0, 0, 0, .38) !important;
