@@ -453,7 +453,65 @@ body *{font-family:Arial,"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans
   transition: color .2s ease;
 }
 .portfolio-nav:not(.button-glow) .nav-links > a:hover { color: #fff; }
+.portfolio-nav:not(.button-glow) .nav-links > .nav-contact-trigger {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c7c7c7;
+  font-size: 17px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+.portfolio-nav:not(.button-glow) .nav-links > .nav-contact-trigger:hover,
+.portfolio-nav:not(.button-glow) .nav-links > .nav-contact-trigger:focus-visible { color: #fff; }
 .portfolio-nav:not(.button-glow) .mobile-menu-button { display: none; }
+.nav-contact-popover {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 30;
+  width: min(390px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 20px;
+  color: #172012;
+  background: rgba(241, 244, 234, .98);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, .46);
+  animation: contact-details-in .24s ease both;
+}
+.nav-contact-popover-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #536041;
+  font: 10px var(--mono);
+  letter-spacing: .1em;
+}
+.nav-contact-popover-head button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(23, 32, 18, .18);
+  border-radius: 50%;
+  color: #172012;
+  background: transparent;
+  cursor: pointer;
+}
+.nav-contact-popover-head button:hover { background: rgba(23, 32, 18, .08); }
+.nav-contact-popover .nav-contact-details {
+  width: 100%;
+  max-width: none;
+  margin: 12px 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  animation: none;
+}
+.nav-contact-details .contact-phone { padding-right: 4px; }
 @media(max-width:900px) {
   .portfolio-nav:not(.button-glow) { top: 10px; width: calc(100% - 24px); height: 58px; padding: 0 14px; }
   .portfolio-nav:not(.button-glow) .nav-brand { gap: 8px; font-size: 19px !important; }
@@ -491,8 +549,9 @@ body *{font-family:Arial,"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans
     backdrop-filter: blur(20px);
   }
   .portfolio-nav:not(.button-glow) .nav-links.nav-links-open { display: flex; }
-  .portfolio-nav:not(.button-glow) .nav-links > a { padding: 14px 2px; text-align: left; }
-  .portfolio-nav:not(.button-glow) .nav-links > a:not(:last-child) { border-bottom: .5px solid rgba(255,255,255,.2); }
+  .portfolio-nav:not(.button-glow) .nav-links > a,
+  .portfolio-nav:not(.button-glow) .nav-links > .nav-contact-trigger { padding: 14px 2px; text-align: left; }
+  .portfolio-nav:not(.button-glow) .nav-links > a { border-bottom: .5px solid rgba(255,255,255,.2); }
 }
 
 /* Static portfolio hero layout, aligned with the work archive below. */

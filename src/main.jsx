@@ -298,7 +298,9 @@ function Landing() {
 
 function PortfolioNav() {
   const { text, image } = useCms();
+  const navRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [scrolled, setScrolled] = useState(() => window.scrollY > 40);
   useEffect(() => {
     let frame = 0;
@@ -319,9 +321,27 @@ function PortfolioNav() {
       window.cancelAnimationFrame(frame);
     };
   }, []);
-  const close = () => setOpen(false);
+  useEffect(() => {
+    if (!contactOpen) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setContactOpen(false);
+    };
+    const closeOnOutsideClick = (event) => {
+      if (!navRef.current?.contains(event.target)) setContactOpen(false);
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('pointerdown', closeOnOutsideClick);
+    return () => {
+      document.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('pointerdown', closeOnOutsideClick);
+    };
+  }, [contactOpen]);
+  const close = () => {
+    setOpen(false);
+    setContactOpen(false);
+  };
   return (
-    <header className={`portfolio-nav${scrolled ? ' is-floating' : ''}`}>
+    <header ref={navRef} className={`portfolio-nav${scrolled ? ' is-floating' : ''}`}>
       <a href="#top" className="nav-brand" aria-label="回到页面顶部" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         {image('brand.logo', '/images/vision-mark.png') && <span className="nav-logo-mark"><img src={image('brand.logo', '/images/vision-mark.png')} alt="" /></span>}
         <span>{text('nav.brandName', 'VISION DESIGN')}</span>
@@ -332,7 +352,12 @@ function PortfolioNav() {
         <a href="#offline-materials" onClick={close}>{text('nav.offline', '线下物料')}</a>
         <a href="#aigc" onClick={close}>{text('nav.aigc', 'AIGC应用')}</a>
         <a href="#ecommerce" onClick={close}>{text('nav.ecommerce', '电商页面')}</a>
+        <button className="nav-contact-trigger" type="button" aria-haspopup="dialog" aria-expanded={contactOpen} onClick={() => { setOpen(false); setContactOpen((visible) => !visible); }}>联系我</button>
       </nav>
+      {contactOpen && <div className="nav-contact-popover" role="dialog" aria-label="联系方式">
+        <div className="nav-contact-popover-head"><span>CONTACT / 联系方式</span><button type="button" aria-label="关闭联系方式" onClick={() => setContactOpen(false)}><X size={16} /></button></div>
+        <div className="contact-details nav-contact-details"><ContactMethods /></div>
+      </div>}
     </header>
   );
 }
@@ -895,13 +920,17 @@ function Approach() {
   );
 }
 
+function ContactMethods() {
+  return <><figure className="contact-qr-card"><img src="/uploads/wechat-contact-qr.jpg" alt="微信联系二维码" loading="lazy" /><figcaption>微信扫码添加</figcaption></figure><div className="contact-phone"><span>电话 / PHONE</span><a href="tel:13216196619">13216196619</a></div></>;
+}
+
 function Contact() {
   const { text } = useCms();
   const [contactVisible, setContactVisible] = useState(false);
   return (
     <section id="contact" className="contact-section">
       <div className="contact-orbit orbit-one" /><div className="contact-orbit orbit-two" /><div className="contact-gridline" />
-      <div className="contact-content"><Eyebrow light>{text('contact.eyebrow', 'LET’S MAKE SOMETHING MEANINGFUL')}</Eyebrow><h2>{text('contact.title1', '有好的想法，')}<br /><span>{text('contact.title2', '值得被认真看见。')}</span></h2><p>{text('contact.body1', '品牌视觉、产品表达，或正在探索的 AI 创意。')}<br />{text('contact.body2', '欢迎带着一个具体的问题，开启下一段对话。')}</p><button className="contact-button" type="button" aria-expanded={contactVisible} aria-controls="contact-details" onClick={() => setContactVisible((visible) => !visible)}>{contactVisible ? <ArrowDownRight size={18} /> : <ArrowUpRight size={18} />}{contactVisible ? '收起联系方式' : text('contact.button', '联系我吧')}</button>{contactVisible && <div className="contact-details" id="contact-details" aria-live="polite"><figure className="contact-qr-card"><img src="/uploads/wechat-contact-qr.jpg" alt="微信联系二维码" loading="lazy" /><figcaption>微信扫码添加</figcaption></figure><div className="contact-phone"><span>电话 / PHONE</span><a href="tel:13216196619">13216196619</a></div></div>}</div>
+      <div className="contact-content"><Eyebrow light>{text('contact.eyebrow', 'LET’S MAKE SOMETHING MEANINGFUL')}</Eyebrow><h2>{text('contact.title1', '有好的想法，')}<br /><span>{text('contact.title2', '值得被认真看见。')}</span></h2><p>{text('contact.body1', '品牌视觉、产品表达，或正在探索的 AI 创意。')}<br />{text('contact.body2', '欢迎带着一个具体的问题，开启下一段对话。')}</p><button className="contact-button" type="button" aria-expanded={contactVisible} aria-controls="contact-details" onClick={() => setContactVisible((visible) => !visible)}>{contactVisible ? <ArrowDownRight size={18} /> : <ArrowUpRight size={18} />}{contactVisible ? '收起联系方式' : text('contact.button', '联系我吧')}</button>{contactVisible && <div className="contact-details" id="contact-details" aria-live="polite"><ContactMethods /></div>}</div>
       <div className="contact-bottom"><span>{text('contact.signature', 'CHALON ZHOU — VISUAL DESIGNER')}</span><a href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>{text('footer.backToTop', '回到顶部')} <ArrowRight size={14} /></a></div>
     </section>
   );
