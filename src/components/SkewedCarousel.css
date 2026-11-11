@@ -1,0 +1,176 @@
+.skewed-carousel {
+  position: relative;
+  width: 100%;
+  margin-top: 68px;
+  color: var(--text, #eef0e8);
+}
+
+.skewed-carousel-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(520px, 42vw, 700px);
+  overflow: hidden;
+  isolation: isolate;
+  touch-action: pan-y;
+  outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+.skewed-carousel-stage:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 9% 12%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(192, 237, 121, .055), transparent 70%);
+  filter: blur(30px);
+}
+
+.skewed-carousel-stage:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, .35);
+  outline-offset: -8px;
+}
+
+.skewed-carousel-card {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: var(--skew-card-width);
+  height: var(--skew-card-height);
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 1050ms cubic-bezier(.2, .72, .22, 1);
+  will-change: transform;
+}
+
+.skewed-carousel-card:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, .75);
+  outline-offset: 6px;
+}
+
+.skewed-carousel-media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border: .5px solid rgba(255, 255, 255, .2);
+  border-radius: var(--skew-card-radius);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .012) 48%, rgba(192, 237, 121, .018)), rgba(8, 9, 8, .78);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  backdrop-filter: blur(20px) saturate(135%);
+  -webkit-clip-path: inset(0 round var(--skew-card-radius));
+  clip-path: inset(0 round var(--skew-card-radius));
+  transition: border-radius 1050ms cubic-bezier(.2, .72, .22, 1), clip-path 1050ms cubic-bezier(.2, .72, .22, 1), box-shadow 500ms ease;
+}
+
+.skewed-carousel-media::after {
+  position: absolute;
+  z-index: 1;
+  inset: .5px;
+  border-radius: inherit;
+  background: rgb(0 0 0 / var(--skew-card-shade, 0));
+  content: "";
+  pointer-events: none;
+  transition: background-color 850ms ease;
+}
+
+.skewed-carousel-card.is-active .skewed-carousel-media {
+  box-shadow: 0 26px 72px rgba(0, 0, 0, .38);
+}
+
+.skewed-carousel-media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
+  filter: blur(var(--skew-card-blur));
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: filter 650ms ease;
+}
+
+.skewed-carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 500;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  place-items: center;
+  border: .5px solid rgba(255, 255, 255, .2);
+  border-radius: 50%;
+  background: rgba(14, 16, 13, .56);
+  color: #f0f2e8;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.skewed-carousel-control:hover {
+  border-color: rgba(255, 255, 255, .45);
+  background: rgba(255, 255, 255, .16);
+  color: var(--acid, #c0ed79);
+}
+
+.skewed-carousel-control:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, .65);
+  outline-offset: 3px;
+}
+
+.skewed-carousel-control.is-previous { left: 12px; }
+.skewed-carousel-control.is-next { right: 12px; }
+
+.skewed-carousel-count {
+  position: absolute;
+  z-index: 501;
+  right: 24px;
+  bottom: 19px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: rgba(239, 241, 232, .68);
+  font: 11px var(--mono, monospace);
+  letter-spacing: .14em;
+  pointer-events: none;
+}
+
+.skewed-carousel-count b { color: var(--acid, #c0ed79); font-weight: 500; }
+.skewed-carousel-count i { color: rgba(255, 255, 255, .3); font-style: normal; }
+
+@media (max-width: 900px) {
+  .skewed-carousel-stage { height: 500px; }
+  .skewed-carousel-control { width: 42px; height: 42px; }
+}
+
+@media (max-width: 600px) {
+  .skewed-carousel { margin-top: 54px; }
+  .skewed-carousel-stage {
+    height: 400px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 2%, #000 98%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 2%, #000 98%, transparent 100%);
+  }
+  .skewed-carousel-control.is-previous { left: 4px; }
+  .skewed-carousel-control.is-next { right: 4px; }
+  .skewed-carousel-count { right: 14px; bottom: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skewed-carousel-card { transition-duration: .01ms; }
+  .skewed-carousel-media,
+  .skewed-carousel-media img { transition-duration: .01ms; }
+}

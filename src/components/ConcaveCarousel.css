@@ -1,0 +1,188 @@
+.offline-concave-carousel {
+  position: relative;
+  width: 100%;
+  margin-top: 68px;
+  scroll-margin-top: 100px;
+  color: var(--text, #eef0e8);
+  perspective: 1500px;
+}
+
+.offline-concave-carousel .concave-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(340px, 24vw, 400px);
+  overflow: hidden;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  touch-action: pan-y;
+  outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+.offline-concave-carousel .concave-atmosphere {
+  position: absolute;
+  inset: 12% 14%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, rgba(192, 237, 121, .075), rgba(192, 237, 121, .018) 40%, transparent 74%);
+  filter: blur(24px);
+}
+
+.offline-concave-carousel .concave-panel {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: var(--concave-width);
+  height: var(--concave-height);
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  isolation: isolate;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .012) 48%, rgba(192, 237, 121, .018)), rgba(8, 9, 8, .72);
+  color: inherit;
+  cursor: pointer;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition:
+    transform 1050ms cubic-bezier(.2, .72, .22, 1),
+    opacity 850ms ease,
+  box-shadow 400ms ease;
+  will-change: transform, opacity;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.offline-concave-carousel .concave-panel:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, .6);
+  outline-offset: 4px;
+}
+
+.offline-concave-carousel .concave-panel.is-centered {
+  border-color: transparent;
+}
+
+.offline-concave-carousel .concave-panel-media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: var(--concave-radius);
+  background: transparent;
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  backdrop-filter: blur(20px) saturate(135%);
+  transition: border-radius 1050ms cubic-bezier(.2, .72, .22, 1);
+  isolation: isolate;
+}
+
+.offline-concave-carousel .concave-panel-media::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: max(0px, calc(var(--concave-radius) - 1px));
+  background: rgb(0 0 0 / var(--concave-shade, 0));
+  content: "";
+  pointer-events: none;
+  transition: background-color 850ms ease;
+}
+
+.offline-concave-carousel .concave-panel.is-centered .concave-panel-media {
+  box-shadow: none;
+}
+
+.offline-concave-carousel .concave-panel img {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: max(0px, calc(var(--concave-radius) - 1px));
+  object-fit: contain;
+  filter: blur(var(--concave-blur, 0px));
+  transition: filter 850ms ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.offline-concave-carousel .concave-panel-placeholder {
+  position: absolute;
+  inset: .5px;
+  display: block;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(255, 255, 255, .045), transparent 64%),
+    linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .008) 46%, rgba(192, 237, 121, .015)),
+    rgba(8, 9, 8, .78);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
+  backdrop-filter: blur(20px) saturate(135%);
+  filter: blur(var(--concave-blur, 0px));
+  transition: filter 850ms ease;
+}
+
+.offline-concave-carousel .concave-control {
+  position: absolute;
+  top: 50%;
+  z-index: 200;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: .5px solid rgba(255, 255, 255, .24);
+  border-radius: 50%;
+  background: rgba(16, 18, 14, .55);
+  color: #eff0e8;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 260ms ease, color 260ms ease, border-color 260ms ease;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.offline-concave-carousel .concave-control:hover {
+  border-color: rgba(192, 237, 121, .48);
+  background: rgba(192, 237, 121, .16);
+  color: var(--acid, #c0ed79);
+}
+
+.offline-concave-carousel .concave-control:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, .55);
+  outline-offset: 3px;
+}
+
+.offline-concave-carousel .concave-control-previous {
+  left: max(8px, calc((100% - min(1500px, calc(100% - clamp(44px, 10vw, 200px)))) / 2));
+}
+.offline-concave-carousel .concave-control-next {
+  right: max(8px, calc((100% - min(1500px, calc(100% - clamp(44px, 10vw, 200px)))) / 2));
+}
+
+@media (max-width: 900px) {
+  .offline-concave-carousel .concave-stage { height: 400px; }
+  .offline-concave-carousel .concave-control { width: 40px; height: 40px; }
+}
+
+@media (max-width: 1024px) and (min-width: 681px) {
+  .offline-concave-carousel .concave-control-previous { left: 48px; }
+  .offline-concave-carousel .concave-control-next { right: 48px; }
+}
+
+@media (max-width: 600px) {
+  .offline-concave-carousel { margin-top: 58px; }
+  .offline-concave-carousel .concave-stage {
+    height: 330px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+  }
+  .offline-concave-carousel .concave-panel {
+    --concave-radius: calc(18px / var(--concave-scale)) !important;
+  }
+  .offline-concave-carousel .concave-control-previous { left: 22px; }
+  .offline-concave-carousel .concave-control-next { right: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offline-concave-carousel .concave-panel,
+  .offline-concave-carousel .concave-control { transition-duration: .01ms; }
+}

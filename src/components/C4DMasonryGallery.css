@@ -1,0 +1,53 @@
+.c4d-masonry-gallery {
+  columns: 4;
+  column-gap: clamp(14px, 1.5vw, 22px);
+  margin-top: 68px;
+}
+
+.c4d-masonry-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 clamp(14px, 1.5vw, 22px);
+  padding: 0;
+  overflow: hidden;
+  break-inside: avoid;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 16px;
+  background: #111310;
+  color: inherit;
+  cursor: zoom-in;
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.c4d-masonry-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(192, 237, 121, .48);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, .22);
+}
+
+.c4d-masonry-card:focus-visible {
+  outline: 2px solid var(--acid, #c0ed79);
+  outline-offset: 3px;
+}
+
+.c4d-masonry-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--c4d-image-ratio, 1);
+}
+
+.c4d-masonry-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .c4d-masonry-gallery { columns: 3; margin-top: 48px; }
+}
+
+@media (max-width: 680px) {
+  .c4d-masonry-gallery { columns: 2; column-gap: 10px; margin-top: 38px; }
+  .c4d-masonry-card { margin-bottom: 10px; border-radius: 12px; }
+}

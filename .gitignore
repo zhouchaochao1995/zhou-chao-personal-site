@@ -1,0 +1,18 @@
+# Dependencies and generated output
+node_modules/
+dist/
+.npm-cache/
+.dev-server.log
+
+# Source archives and local source media that are not served by the website
+assets-originals/
+KV主视觉_16x9/
+minimax-首帧/
+
+# Local configuration and machine-specific files
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,242 @@
+{
+  "texts": {
+    "about.years": "9",
+    "about.focusCount": "4"
+  },
+  "images": {
+    "extra.39cf5489-581c-451e-8418-289fb5926dde": "/uploads/4d8c2fa7-5459-4eb8-b367-bcce0e9f43f5.jpg",
+    "extra.822911c7-8d82-411c-8cc8-fe054becdd00": "/uploads/9dc6036f-804a-4efa-92ee-af506c0fdf2b.webp",
+    "extra.3f64546c-813e-4d30-ad7f-83316d01ebfa": "/uploads/0a914bf4-ddb6-42a0-862e-e9b14785d7fb.jpg",
+    "extra.bf8abb7d-8a2e-4e72-9643-6e19a20894a1": "/uploads/5e2ea62c-5cde-4bb8-82e0-e1600189098c.webp",
+    "extra.9714ceeb-45b3-4dea-b879-eae002bf2417": "/uploads/76044867-7a6f-46bc-80e3-129778ac330f.webp",
+    "extra.2ade799c-458d-4a87-9a68-9211e919c08c": "/uploads/0eeaa3f8-0836-4fec-b3dc-3c79c80a3b8a.webp",
+    "extra.6df53c08-ddb0-4337-8642-af9018f49210": "/uploads/126682ac-9a41-4b81-a037-3b237c8bc2b9.webp",
+    "extra.e0d2f83e-29c6-48c0-bfb1-61bf5de99c83": "/uploads/8e19bea0-75c6-4c95-bc45-326b84118494.webp",
+    "extra.d0581cbc-de7f-492c-bd28-932ce281f944": "/uploads/2335f45f-85e2-4695-a1c9-c7240e3d4d73.webp",
+    "extra.096ec431-6f8f-421b-8e73-dca2b5ee2b5f": "/uploads/9f61662e-8cbc-42bb-b17e-155cef23cff9.webp",
+    "extra.d4b81b0b-2150-402c-b5d6-05b0348d8db6": "/uploads/69bf5e5a-228f-4923-ad38-749f674e8862.webp",
+    "extra.9696116d-9e24-4cf5-b229-a827e3b3015f": "/uploads/dfc50c13-1e1a-4e04-af1c-dee145023a93.webp",
+    "extra.676b7c8e-e883-46d7-9448-b7399072e06f": "/uploads/4303427a-8295-4b78-9499-76359d5a51d3.webp",
+    "extra.e6ab364f-900a-40d9-9ab1-8183cb27d3d5": "/uploads/b4c7b86d-a3c4-4971-be3b-373245b17944.webp",
+    "extra.b4c3e155-7d01-491b-8387-da6d6907365f": "/uploads/09925654-0e8f-4d14-9b52-69905c6665c2.webp",
+    "extra.3f504bc3-fda7-4fd4-87e7-60d07b2568ed": "/uploads/30a4966e-f079-41b0-a9b4-1fb4518e5527.webp",
+    "extra.25e86fec-657e-43d6-8aa5-1f6599abf841": "/uploads/4b4ea5fe-4341-4f31-a480-fe50c6ed3d7c.webp",
+    "extra.b2a9a02a-fb8d-428f-a5d5-81f31623eaf5": "/uploads/e6225c22-1714-4595-9651-5dd5ecc0533c.webp",
+    "extra.f97ff425-10e7-419c-9042-5a3f5c2dd4e7": "/uploads/acc6e2e0-51ce-4776-a828-3a65cddc6fcd.webp",
+    "extra.656bf5f1-9844-4815-876f-3bb2ae91706d": "/uploads/70191aa0-d6c6-4798-949d-368d87bd3c58.webp",
+    "extra.b22c8a80-0866-40d2-822c-20bbd7dcfcad": "/uploads/0d755d80-f7ca-4777-8a30-8cb1c809615b.webp",
+    "extra.675aefb1-fc14-40ae-b8e3-a7c6209361f0": "/uploads/f6f74b26-a139-4901-9191-00f2ae755702.webp",
+    "extra.d10e25cb-33c7-4cdb-92b6-878535438ac9": "/uploads/c05c858a-4315-4c57-afad-a15e726e50fe.webp",
+    "extra.b4df3126-5c5f-49ce-9bb0-43d1beed7260": "/uploads/7f26e53a-2a45-4d71-b379-e33ca6219de8.webp",
+    "extra.d2a1a59f-ff2e-4e99-89d1-0d8aabf95930": "/uploads/8daaa18e-0323-48d2-8b91-95650eeda946.webp",
+    "extra.a4b4384e-0d85-43a8-a0c9-7240909c1f0b": "/uploads/e88cb990-848f-4f9b-acfb-4a546ec028f4.jpg",
+    "ecommerce.2": "/uploads/ai-dehumidifier-detail.jpg",
+    "ecommerce.3": "/uploads/160ne-detail.jpg",
+    "drawing.1": "/uploads/sketch-product-perspective.webp",
+    "drawing.2": "/uploads/sketch-portrait-watch.webp",
+    "drawing.3": "/uploads/sketch-eye-study.webp",
+    "drawing.4": "/uploads/sketch-rooftop-study.webp",
+    "drawing.5": "/uploads/sketch-eye-detail.webp",
+    "drawing.6": "/uploads/sketch-profile-art.webp",
+    "extra.9a79b7b3-60c9-4746-9a80-365110742617": "/uploads/sketch-product-views.webp"
+  },
+  "ratios": {
+    "extra.39cf5489-581c-451e-8418-289fb5926dde": 0.7072446555819477,
+    "extra.822911c7-8d82-411c-8cc8-fe054becdd00": 0.7072446555819477,
+    "extra.3f64546c-813e-4d30-ad7f-83316d01ebfa": 0.7072446555819477,
+    "extra.bf8abb7d-8a2e-4e72-9643-6e19a20894a1": 1.7768331562167907,
+    "extra.9714ceeb-45b3-4dea-b879-eae002bf2417": 1.7768331562167907,
+    "extra.2ade799c-458d-4a87-9a68-9211e919c08c": 1.7768331562167907,
+    "extra.6df53c08-ddb0-4337-8642-af9018f49210": 1.7768331562167907,
+    "extra.e0d2f83e-29c6-48c0-bfb1-61bf5de99c83": 1.7768331562167907,
+    "extra.d0581cbc-de7f-492c-bd28-932ce281f944": 1.7768331562167907,
+    "extra.096ec431-6f8f-421b-8e73-dca2b5ee2b5f": 1.7768331562167907,
+    "extra.d4b81b0b-2150-402c-b5d6-05b0348d8db6": 1.7768331562167907,
+    "extra.9696116d-9e24-4cf5-b229-a827e3b3015f": 1.7768331562167907,
+    "extra.676b7c8e-e883-46d7-9448-b7399072e06f": 1.7768331562167907,
+    "extra.e6ab364f-900a-40d9-9ab1-8183cb27d3d5": 1.7768331562167907,
+    "extra.b4c3e155-7d01-491b-8387-da6d6907365f": 1.7768331562167907,
+    "extra.3f504bc3-fda7-4fd4-87e7-60d07b2568ed": 1.7768331562167907,
+    "extra.25e86fec-657e-43d6-8aa5-1f6599abf841": 1.7747077577045696,
+    "extra.b2a9a02a-fb8d-428f-a5d5-81f31623eaf5": 1.7768331562167907,
+    "extra.f97ff425-10e7-419c-9042-5a3f5c2dd4e7": 1.7768331562167907,
+    "extra.656bf5f1-9844-4815-876f-3bb2ae91706d": 1.7768331562167907,
+    "extra.b22c8a80-0866-40d2-822c-20bbd7dcfcad": 1.77577045696068,
+    "extra.675aefb1-fc14-40ae-b8e3-a7c6209361f0": 1.7768331562167907,
+    "extra.d10e25cb-33c7-4cdb-92b6-878535438ac9": 1.77577045696068,
+    "extra.b4df3126-5c5f-49ce-9bb0-43d1beed7260": 2.33252131546894,
+    "extra.d2a1a59f-ff2e-4e99-89d1-0d8aabf95930": 2.33252131546894,
+    "extra.a4b4384e-0d85-43a8-a0c9-7240909c1f0b": 0.030453721907405265,
+    "drawing.1": 3.5314685314685317,
+    "drawing.2": 0.7643158529234478,
+    "drawing.3": 1.0083916083916085,
+    "drawing.4": 1.3352112676056338,
+    "drawing.5": 1.05470737913486,
+    "drawing.6": 0.9987951807228915,
+    "extra.9a79b7b3-60c9-4746-9a80-365110742617": 1.2242314647377939
+  },
+  "extraImages": [
+    {
+      "id": "extra.39cf5489-581c-451e-8418-289fb5926dde",
+      "label": "报价表1",
+      "category": "线下物料",
+      "ratio": 1
+    },
+    {
+      "id": "extra.822911c7-8d82-411c-8cc8-fe054becdd00",
+      "label": "报价表2",
+      "category": "线下物料",
+      "ratio": 1
+    },
+    {
+      "id": "extra.3f64546c-813e-4d30-ad7f-83316d01ebfa",
+      "label": "报价表3",
+      "category": "线下物料",
+      "ratio": 1
+    },
+    {
+      "id": "extra.bf8abb7d-8a2e-4e72-9643-6e19a20894a1",
+      "label": "01-科技-明日触手可及",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.9714ceeb-45b3-4dea-b879-eae002bf2417",
+      "label": "02-餐饮-一口入城",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.2ade799c-458d-4a87-9a68-9211e919c08c",
+      "label": "03-时尚-再造衣日",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.6df53c08-ddb0-4337-8642-af9018f49210",
+      "label": "04-文旅-去山海之间",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.e0d2f83e-29c6-48c0-bfb1-61bf5de99c83",
+      "label": "05-健康-好好睡一觉",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.d0581cbc-de7f-492c-bd28-932ce281f944",
+      "label": "06-游戏-像素之外",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.096ec431-6f8f-421b-8e73-dca2b5ee2b5f",
+      "label": "07-教育-想法正在长大",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.d4b81b0b-2150-402c-b5d6-05b0348d8db6",
+      "label": "08-汽车-一路向新",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.9696116d-9e24-4cf5-b229-a827e3b3015f",
+      "label": "09-文化-夜色有声",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.676b7c8e-e883-46d7-9448-b7399072e06f",
+      "label": "10-金融-把未来存进今天",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.e6ab364f-900a-40d9-9ab1-8183cb27d3d5",
+      "label": "11-农耕-城上有田",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.b4c3e155-7d01-491b-8387-da6d6907365f",
+      "label": "12-航天-向月面出发",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.3f504bc3-fda7-4fd4-87e7-60d07b2568ed",
+      "label": "13-出版-纸间有光",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.25e86fec-657e-43d6-8aa5-1f6599abf841",
+      "label": "14-运动-向风开跑",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.b2a9a02a-fb8d-428f-a5d5-81f31623eaf5",
+      "label": "15-美学-微光实验室",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.f97ff425-10e7-419c-9042-5a3f5c2dd4e7",
+      "label": "16-音乐-蓝调入夜",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.656bf5f1-9844-4815-876f-3bb2ae91706d",
+      "label": "17-海洋-潮汐档案",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.b22c8a80-0866-40d2-822c-20bbd7dcfcad",
+      "label": "18-城市-街区再生实验",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.675aefb1-fc14-40ae-b8e3-a7c6209361f0",
+      "label": "19-制造-手作未来",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.d10e25cb-33c7-4cdb-92b6-878535438ac9",
+      "label": "20-公益-无声有形",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.b4df3126-5c5f-49ce-9bb0-43d1beed7260",
+      "label": "01_主KV_收敛光效景深版",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.d2a1a59f-ff2e-4e99-89d1-0d8aabf95930",
+      "label": "ChatGPT 图像 2026年11月1日 10_13_36",
+      "category": "活动KV",
+      "ratio": 1
+    },
+    {
+      "id": "extra.a4b4384e-0d85-43a8-a0c9-7240909c1f0b",
+      "label": "er-60",
+      "category": "电商页面",
+      "ratio": 1
+    },
+    {
+      "id": "extra.9a79b7b3-60c9-4746-9a80-365110742617",
+      "label": "手绘作品 07 · 设备双视图草图",
+      "category": "手绘探索",
+      "ratio": 1.2242314647377939
+    }
+  ]
+}
