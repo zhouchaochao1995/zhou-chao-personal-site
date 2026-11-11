@@ -1,14 +1,15 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import packagedContent from '../data/site-content.json';
 
 const CmsContext = createContext(null);
 
 async function readContent() {
   try {
     const response = await fetch('/api/cms/content');
-    if (!response.ok) return {};
+    if (!response.ok) return packagedContent;
     return await response.json();
   } catch {
-    return {};
+    return packagedContent;
   }
 }
 

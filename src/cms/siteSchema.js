@@ -107,7 +107,7 @@ export const imageFields = [
     id: `vi.${String(index + 1).padStart(3, '0')}`,
     label: `品牌 VI 图片 ${String(index + 1).padStart(2, '0')}`,
     category: '品牌 VI',
-    src: `/images/ansmen-vi/${String(index + 1).padStart(2, '0')}.jpg`,
+    src: `/images/ansmen-vi/${String(index + 1).padStart(2, '0')}.${[8, 9, 10, 11, 22, 29].includes(index + 1) ? 'webp' : 'jpg'}`,
   })),
   ...[
     ['/images/offline-materials/22222.webp', '品牌手册'],

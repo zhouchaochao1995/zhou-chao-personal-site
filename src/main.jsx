@@ -634,7 +634,20 @@ function Projects() {
   const { content, text, image, ratio, extra } = useCms();
   const navExtras = extra('导航与首屏');
   const brandVisualImages = [
-    ...Array.from({ length: 36 }, (_, index) => ({ src: image(`vi.${String(index + 1).padStart(3, '0')}`, `/images/ansmen-vi/${String(index + 1).padStart(2, '0')}.jpg`), alt: `安诗曼品牌视觉应用图片 ${String(index + 1).padStart(2, '0')}` })).filter((item) => item.src),
+    ...Array.from({ length: 36 }, (_, index) => {
+      const number = index + 1;
+      const extension = [8, 9, 10, 11, 22, 29].includes(number) ? 'webp' : 'jpg';
+      const filename = String(number).padStart(2, '0');
+      const preferredSrc = `/images/ansmen-vi/${filename}.${extension}`;
+      const savedSrc = image(`vi.${String(number).padStart(3, '0')}`, preferredSrc);
+      const src = extension === 'webp' && savedSrc?.endsWith(`/images/ansmen-vi/${filename}.jpg`)
+        ? savedSrc.replace(/\.jpg$/i, '.webp')
+        : savedSrc;
+      return {
+        src,
+        alt: `安诗曼品牌视觉应用图片 ${filename}`,
+      };
+    }).filter((item) => item.src),
     ...extra('品牌 VI').map((entry) => ({ src: entry.src, alt: entry.label })),
   ];
   const [activeVIIndex, setActiveVIIndex] = useState(null);
@@ -699,7 +712,7 @@ function Projects() {
       note: text(`ecommerce.slot${index + 1}Note`, note),
       ratio: itemRatio,
       imageId,
-      src: firstAvailableExtra?.src || null,
+      src: hasFixedImageSetting ? image(imageId, null) : firstAvailableExtra?.src || null,
       autoScroll: true,
       scrollOnHover: index > 0,
       pauseOnHover: index === 0,
