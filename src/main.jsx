@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowDownRight,
+  ArrowRight,
   ArrowUpRight,
   Menu,
   MoveUpRight,
