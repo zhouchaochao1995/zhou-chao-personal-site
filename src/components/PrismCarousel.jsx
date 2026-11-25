@@ -10,7 +10,6 @@ import './PrismCarousel.css';
 export default function PrismCarousel({
   items = [],
   aspect = 16 / 9,
-  onSelect,
   className = '',
   ariaLabel = '品牌视觉作品轮播',
   statusLabel = 'ANSMEN · VI SYSTEM',
@@ -95,12 +94,11 @@ export default function PrismCarousel({
                 <button
                   className="prism-card-control"
                   type="button"
-                  aria-label={`放大查看第 ${index + 1} 张品牌视觉作品`}
+                  aria-label={offset === 0 ? `当前显示第 ${index + 1} 张品牌视觉作品` : `切换到第 ${index + 1} 张品牌视觉作品`}
                   aria-current={offset === 0 ? 'true' : undefined}
                   onClick={() => {
                     if (dragged.current) return;
                     setActiveIndex(index);
-                    onSelect?.(item, index);
                   }}
                 >
                 <span className="prism-card-frame" style={{ aspectRatio: '16 / 9' }}>

@@ -1,7 +1,3 @@
-import { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { createPortal } from 'react-dom';
-
 const characterSets = [
   {
     name: '滑板女孩 IP',
@@ -29,74 +25,24 @@ const characterSets = [
   },
 ];
 
-const galleryImages = characterSets.flatMap((character) => [
-  { src: character.hero[0], alt: character.hero[1], group: character.name },
-  ...character.images.map(([src, alt]) => ({ src, alt, group: character.name })),
-]);
-
 export default function IPCharacterGallery() {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  useEffect(() => {
-    if (activeIndex == null) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') setActiveIndex(null);
-      if (event.key === 'ArrowLeft') setActiveIndex((index) => (index - 1 + galleryImages.length) % galleryImages.length);
-      if (event.key === 'ArrowRight') setActiveIndex((index) => (index + 1) % galleryImages.length);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [activeIndex]);
-
-  const openImage = (src) => setActiveIndex(galleryImages.findIndex((image) => image.src === src));
-  const activeImage = activeIndex == null ? null : galleryImages[activeIndex];
-  const stepImage = (offset) => setActiveIndex((index) => (index + offset + galleryImages.length) % galleryImages.length);
-
   return (
-    <>
-      <div className="ip-character-gallery" role="group" aria-label="IP形象作品">
-        {characterSets.map((character, setIndex) => {
-          const cards = [character.hero, ...character.images];
-          return (
-            <div className="ip-character-set" key={character.name} aria-label={character.name}>
-              {cards.map(([src, alt], index) => (
-                <button
-                  className={`ip-character-image${index === 0 ? ' ip-character-hero' : ''}`}
-                  key={src}
-                  type="button"
-                  onClick={() => openImage(src)}
-                  aria-label={`放大查看${character.name}：${alt}`}
-                >
-                  <img src={src} alt={`${character.name}：${alt}`} loading={setIndex === 0 && index === 0 ? 'eager' : 'lazy'} decoding="async" />
-                </button>
-              ))}
-            </div>
-          );
-        })}
-      </div>
-
-      {activeImage && createPortal(
-        <div
-          className="ip-image-lightbox-backdrop"
-          role="presentation"
-          onMouseDown={(event) => { if (event.target === event.currentTarget) setActiveIndex(null); }}
-        >
-          <section className="ip-image-lightbox" role="dialog" aria-modal="true" aria-label={`${activeImage.group}图片预览`}>
-            <img src={activeImage.src} alt={activeImage.alt} />
-            <button className="ip-image-lightbox-control ip-image-lightbox-close" type="button" onClick={() => setActiveIndex(null)} aria-label="关闭图片预览"><X size={22} /></button>
-            <button className="ip-image-lightbox-control ip-image-lightbox-previous" type="button" onClick={() => stepImage(-1)} aria-label="查看上一张"><ChevronLeft size={25} /></button>
-            <button className="ip-image-lightbox-control ip-image-lightbox-next" type="button" onClick={() => stepImage(1)} aria-label="查看下一张"><ChevronRight size={25} /></button>
-          </section>
-        </div>,
-        document.body,
-      )}
-    </>
+    <div className="ip-character-gallery" role="group" aria-label="IP形象作品">
+      {characterSets.map((character, setIndex) => {
+        const cards = [character.hero, ...character.images];
+        return (
+          <div className="ip-character-set" key={character.name} aria-label={character.name}>
+            {cards.map(([src, alt], index) => (
+              <figure
+                className={`ip-character-image${index === 0 ? ' ip-character-hero' : ''}`}
+                key={src}
+              >
+                <img src={src} alt={`${character.name}：${alt}`} loading={setIndex === 0 && index === 0 ? 'eager' : 'lazy'} decoding="async" />
+              </figure>
+            ))}
+          </div>
+        );
+      })}
+    </div>
   );
 }

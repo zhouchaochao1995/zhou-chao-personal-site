@@ -9,7 +9,7 @@ function wrapIndex(index, count) {
 }
 
 /** Responsive, image-ratio-aware front-facing carousel for the C4D gallery. */
-export default function SkewedCarousel({ items = [], onSelect, ariaLabel = 'C4D 产品作品轮播' }) {
+export default function SkewedCarousel({ items = [], ariaLabel = 'C4D 产品作品轮播' }) {
   const stageRef = useRef(null);
   const dragRef = useRef(null);
   const draggedRef = useRef(false);
@@ -130,12 +130,11 @@ export default function SkewedCarousel({ items = [], onSelect, ariaLabel = 'C4D 
             type="button"
             className={`skewed-carousel-card${offset === 0 ? ' is-active' : ''}`}
             style={style}
-            aria-label={`第 ${index + 1} 张：${item.alt || '产品建模与渲染作品'}${offset === 0 ? '，点击放大' : '，点击切换到此图'}`}
+            aria-label={`第 ${index + 1} 张：${item.alt || '产品建模与渲染作品'}${offset === 0 ? '，当前显示' : '，点击切换到此图'}`}
             aria-current={offset === 0 ? 'true' : undefined}
             onClick={() => {
               if (draggedRef.current) return;
               if (offset !== 0) moveTo(index);
-              else onSelect?.(index);
             }}
           >
             <span className="skewed-carousel-media">

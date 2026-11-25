@@ -15,7 +15,7 @@
   border-radius: 16px;
   background: #111310;
   color: inherit;
-  cursor: zoom-in;
+  margin-top: 0;
   transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 
@@ -23,11 +23,6 @@
   transform: translateY(-3px);
   border-color: rgba(192, 237, 121, .48);
   box-shadow: 0 14px 32px rgba(0, 0, 0, .22);
-}
-
-.c4d-masonry-card:focus-visible {
-  outline: 2px solid var(--acid, #c0ed79);
-  outline-offset: 3px;
 }
 
 .c4d-masonry-media {

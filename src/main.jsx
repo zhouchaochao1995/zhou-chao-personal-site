@@ -1,11 +1,8 @@
-import React, { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowDownRight,
-  ArrowRight,
   ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
   Menu,
   MoveUpRight,
   X,
@@ -362,36 +359,6 @@ function PortfolioNav() {
   );
 }
 
-function ProjectCard({ project, onSelect }) {
-  return (
-    <ButtonGlow className={`project-card-glow ${project.imageClass}`}><button className="project-card" onClick={() => onSelect(project)} aria-label={`查看项目：${project.title}`}>
-      <span className="project-art"><img src={project.image} alt={project.subtitle} loading="lazy" /><span className="project-open"><ArrowUpRight size={20} /></span><span className="project-image-shade" /></span>
-      <span className="project-card-meta"><span>{project.number} / {project.category}</span><span>{project.year}</span></span>
-      <span className="project-card-title-row"><span><strong>{project.title}</strong><small>{project.subtitle}</small></span><ArrowRight className="project-arrow" size={19} /></span>
-    </button></ButtonGlow>
-  );
-}
-
-function ProjectDialog({ project, onClose }) {
-  useEffect(() => {
-    if (!project) return undefined;
-    const onKey = (event) => { if (event.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', onKey);
-    document.body.classList.add('dialog-open');
-    return () => { document.removeEventListener('keydown', onKey); document.body.classList.remove('dialog-open'); };
-  }, [project, onClose]);
-  if (!project) return null;
-  return (
-    <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <ButtonGlow className="project-dialog-glow"><section className="project-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-        <ButtonGlow className="dialog-close-glow"><button className="dialog-close" onClick={onClose} aria-label="关闭项目详情"><X size={19} /></button></ButtonGlow>
-        <div className={`dialog-image${project.number === '01' ? ' dialog-image-contain' : ''}`}><img src={project.image} alt="" /></div>
-        <div className="dialog-content"><Eyebrow>{project.number} / {project.category}</Eyebrow><h2 id="dialog-title">{project.title}</h2><p className="dialog-subtitle">{project.subtitle}</p><p className="dialog-description">{project.description}</p><div className="dialog-tags">{project.tags.map((tag) => <ButtonGlow className="dialog-tag-glow" key={tag}><span>{tag}</span></ButtonGlow>)}</div><div className="dialog-year">PROJECT PERIOD <strong>{project.year}</strong></div></div>
-      </section></ButtonGlow>
-    </div>
-  );
-}
-
 function About() {
   const { text, image, extra } = useCms();
   const profileExtras = extra('个人资料');
@@ -535,125 +502,6 @@ function ImageMosaic({ count = 0, images = [], imageIds = [], columns, ratio = 1
   );
 }
 
-function VIImageLightbox({ images, activeIndex, onClose, onStep, label = '品牌视觉大图预览' }) {
-  const closeButtonRef = React.useRef(null);
-  const wasOpenRef = React.useRef(false);
-  const image = activeIndex == null ? null : images[activeIndex];
-  const [displayImage, setDisplayImage] = useState(null);
-  const [incomingImage, setIncomingImage] = useState(null);
-  const [isCrossfading, setIsCrossfading] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    let staged = false;
-    let frame = 0;
-    let finish = 0;
-
-    if (activeIndex == null || !image) {
-      wasOpenRef.current = false;
-      setDisplayImage(null);
-      setIncomingImage(null);
-      setIsCrossfading(false);
-      return () => {};
-    }
-
-    if (!wasOpenRef.current) {
-      wasOpenRef.current = true;
-      setDisplayImage(image);
-      setIncomingImage(null);
-      setIsCrossfading(false);
-      return () => {};
-    }
-
-    if (image.src === displayImage?.src) {
-      setIncomingImage(null);
-      setIsCrossfading(false);
-      return () => {};
-    }
-
-    setIncomingImage(null);
-    setIsCrossfading(false);
-    const preloader = new window.Image();
-    const stageIncomingImage = () => {
-      if (cancelled || staged) return;
-      staged = true;
-      setIncomingImage(image);
-      frame = window.requestAnimationFrame(() => {
-        if (cancelled) return;
-        setIsCrossfading(true);
-        finish = window.setTimeout(() => {
-          if (cancelled) return;
-          setDisplayImage(image);
-          setIncomingImage(null);
-          setIsCrossfading(false);
-        }, 680);
-      });
-    };
-    const stageAfterDecode = async () => {
-      try {
-        if (typeof preloader.decode === 'function') await preloader.decode();
-      } catch {
-        // Keep the transition usable if the browser cannot decode this format.
-      }
-      stageIncomingImage();
-    };
-    preloader.onload = stageAfterDecode;
-    preloader.onerror = stageIncomingImage;
-    preloader.src = image.src;
-    if (preloader.complete) {
-      if (preloader.naturalWidth) stageAfterDecode();
-      else stageIncomingImage();
-    }
-
-    return () => {
-      cancelled = true;
-      preloader.onload = null;
-      preloader.onerror = null;
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(finish);
-    };
-  }, [activeIndex, image?.src, displayImage?.src]);
-
-  useEffect(() => {
-    if (activeIndex == null || !image) return undefined;
-    const previousFocus = document.activeElement;
-    const bodyWasLocked = document.body.classList.contains('dialog-open');
-    document.body.classList.add('dialog-open');
-    closeButtonRef.current?.focus();
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') { event.preventDefault(); onClose(); }
-      if (event.key === 'ArrowLeft') { event.preventDefault(); onStep(-1); }
-      if (event.key === 'ArrowRight') { event.preventDefault(); onStep(1); }
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      if (!bodyWasLocked) document.body.classList.remove('dialog-open');
-      previousFocus?.focus?.();
-    };
-  }, [activeIndex, image, onClose, onStep]);
-
-  if (activeIndex == null || !image) return null;
-  const currentImage = displayImage || image;
-  const incomingIsSelected = incomingImage?.src === image.src;
-  const crossfadingSelectedImage = incomingIsSelected && isCrossfading;
-  const lightboxImages = [
-    currentImage && { image: currentImage, layer: 'current', fading: crossfadingSelectedImage },
-    incomingIsSelected && { image: incomingImage, layer: 'next', fading: crossfadingSelectedImage },
-  ].filter(Boolean);
-  return (
-    <div className="vi-lightbox-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-      <ButtonGlow className="vi-lightbox-glow"><section className="vi-lightbox" role="dialog" aria-modal="true" aria-label={label}>
-        {lightboxImages.map(({ image: frameImage, layer, fading }) => <img key={frameImage.src} className={`vi-lightbox-image vi-lightbox-image-${layer}${fading ? ' is-crossfading' : ''}`} src={frameImage.src} alt={frameImage.alt} />)}
-      <ButtonGlow className="vi-lightbox-close"><button ref={closeButtonRef} className="vi-lightbox-control" type="button" onClick={onClose} aria-label="关闭图片预览"><X size={21} /></button></ButtonGlow>
-        <ButtonGlow className="vi-lightbox-step vi-lightbox-previous"><button className="vi-lightbox-control" type="button" onClick={() => onStep(-1)} aria-label="查看上一张"><ChevronLeft size={25} /></button></ButtonGlow>
-        <ButtonGlow className="vi-lightbox-step vi-lightbox-next"><button className="vi-lightbox-control" type="button" onClick={() => onStep(1)} aria-label="查看下一张"><ChevronRight size={25} /></button></ButtonGlow>
-      </section></ButtonGlow>
-    </div>
-  );
-}
-
 function WorkSectionHeading({ number, title, subtitle, right }) {
   const { text } = useCms();
   const sectionId = Number(number);
@@ -685,17 +533,8 @@ function Projects() {
     }).filter((item) => item.src),
     ...extra('品牌 VI').map((entry) => ({ src: entry.src, alt: entry.label })),
   ];
-  const [activeVIIndex, setActiveVIIndex] = useState(null);
-  const [activePrintIndex, setActivePrintIndex] = useState(null);
-  const [activeC4DIndex, setActiveC4DIndex] = useState(null);
-  const [activeIllustrationIndex, setActiveIllustrationIndex] = useState(null);
   const [activeAigcCategoryKey, setActiveAigcCategoryKey] = useState(aigcCategories[0].key);
   const [ecomHoverActive, setEcomHoverActive] = useState(false);
-  const closeVILightbox = useCallback(() => setActiveVIIndex(null), []);
-  const stepVILightbox = useCallback((offset) => {
-    setActiveVIIndex((current) => current == null ? current : (current + offset + brandVisualImages.length) % brandVisualImages.length);
-  }, [brandVisualImages.length]);
-  const viLightboxImages = brandVisualImages;
   const viCarouselItems = brandVisualImages;
   const c4dItems = c4dGallery.flatMap((item, index) => {
     if (omittedC4DGalleryFiles.has(item.src.split('/').at(-1))) return [];
@@ -703,16 +542,11 @@ function Projects() {
     const src = image(id, item.src);
     return src ? [{ ...item, src, ratio: ratio(id, item.ratio) }] : [];
   }).concat(extra('C4D 产品建模').map((entry) => ({ src: entry.src, alt: entry.label, ratio: entry.ratio })));
-  const c4dLightboxImages = c4dItems.map(({ src, alt }) => ({ src, alt }));
   const modelComparisonItems = [
     { title: '恒温恒湿机 · 正面', beforeId: 'c4d.compare.1.before', afterId: 'c4d.compare.1.after', beforeSrc: '/images/white-model-comparison/12kw-before.webp', afterSrc: '/images/white-model-comparison/12kw-final.webp' },
     { title: '恒温恒湿机 · 外机', beforeId: 'c4d.compare.2.before', afterId: 'c4d.compare.2.after', beforeSrc: '/images/white-model-comparison/12kw-outdoor-before.webp', afterSrc: '/images/white-model-comparison/12kw-outdoor-final.webp' },
     { title: '外贸 C60 · 可折叠扶手', beforeId: 'c4d.compare.3.before', afterId: 'c4d.compare.3.after', beforeSrc: '/images/white-model-comparison/c60-before.webp', afterSrc: '/images/white-model-comparison/c60-final.webp' },
   ].map(({ title, beforeId, afterId, beforeSrc, afterSrc }) => ({ title, beforeSrc: image(beforeId, beforeSrc), afterSrc: image(afterId, afterSrc) }));
-  const closeC4DLightbox = useCallback(() => setActiveC4DIndex(null), []);
-  const stepC4DLightbox = useCallback((offset) => {
-    setActiveC4DIndex((current) => current == null ? current : (current + offset + c4dLightboxImages.length) % c4dLightboxImages.length);
-  }, [c4dLightboxImages.length]);
   const offlineDefaults = [
     ['品牌手册', '品牌视觉规范与应用', 1.15, '/images/offline-materials/22222.webp'], ['产品目录', '结构清晰的产品信息', 1.18, '/images/offline-materials/33333.webp'], ['画册装帧', '纸张、色彩与工艺', 1.2, '/images/offline-materials/11111.webp'],
     ['产品画册封面', '产品画册主视觉', 4 / 3, '/images/offline-materials/01-cover.webp'], ['产品画册跨页', '画册阅读与版式展示', 4 / 3, '/images/offline-materials/02-brochure-spread.webp'], ['折页展示', '折页展开与立体呈现', 4 / 3, '/images/offline-materials/03-foldout-mockup.webp'],
@@ -725,15 +559,6 @@ function Projects() {
   });
   const printRowOne = offlineItems.slice(0, 3);
   const printRowTwo = offlineItems.slice(3).concat(extra('线下物料').map((entry, index) => ({ number: `02.${String(12 + index).padStart(2, '0')}`, title: entry.label, note: '', alt: entry.label, src: entry.src, ratio: entry.ratio })));
-  const printLightboxItems = printRowTwo.filter((item) => item.src).map((item) => ({ src: item.src, alt: item.alt || item.title }));
-  const closePrintLightbox = useCallback(() => setActivePrintIndex(null), []);
-  const stepPrintLightbox = useCallback((offset) => {
-    setActivePrintIndex((current) => current == null || !printLightboxItems.length ? current : (current + offset + printLightboxItems.length) % printLightboxItems.length);
-  }, [printLightboxItems.length]);
-  const openPrintLightbox = useCallback((item) => {
-    const index = printLightboxItems.findIndex((image) => image.src === item.src);
-    if (index >= 0) setActivePrintIndex(index);
-  }, [printLightboxItems]);
   const ecomPendingExtras = [...extra('电商页面')];
   const ecomRow = [
     ['首屏视觉', '先呈现产品价值', 0.58], ['功能拆解', '让复杂卖点更易读', 0.64], ['场景表达', '将产品放进使用情境', 0.58],
@@ -772,10 +597,6 @@ function Projects() {
     ...illustrationGallery.map((item) => ({ ...item, src: image(item.id, item.src) })),
     ...extra('插画').map((entry) => ({ id: entry.id, src: entry.src, alt: entry.label })),
   ].filter((item) => item.src);
-  const closeIllustrationLightbox = useCallback(() => setActiveIllustrationIndex(null), []);
-  const stepIllustrationLightbox = useCallback((offset) => {
-    setActiveIllustrationIndex((current) => current == null || !illustrationItems.length ? current : (current + offset + illustrationItems.length) % illustrationItems.length);
-  }, [illustrationItems.length]);
   const activeAigcCategory = aigcCategories.find(({ key }) => key === activeAigcCategoryKey) || aigcCategories[0];
   const activeAigcExtras = extra(activeAigcCategory.label);
   const legacyAigcExtras = activeAigcCategory.key === 'activity-kv' ? extra('AIGC 应用') : [];
@@ -821,9 +642,7 @@ function Projects() {
           aspect={16 / 9}
           className="vi-carousel"
           ariaLabel={`安诗曼品牌视觉作品，共 ${viCarouselItems.length} 张`}
-          onSelect={(_, index) => setActiveVIIndex(index)}
         />
-        <VIImageLightbox images={viLightboxImages} activeIndex={activeVIIndex} onClose={closeVILightbox} onStep={stepVILightbox} />
       </section>
 
       <section className="work-category work-category-offline" aria-label="线下物料作品">
@@ -834,16 +653,13 @@ function Projects() {
           items={printRowTwo}
           className="offline-concave-carousel"
           ariaLabel="线下物料作品，图片等高并按原始比例调整宽度"
-          onSelect={openPrintLightbox}
         />
-        <VIImageLightbox images={printLightboxItems} activeIndex={activePrintIndex} onClose={closePrintLightbox} onStep={stepPrintLightbox} label="线下物料大图预览" />
       </section>
 
       <section className="work-category" id="c4d-modeling" aria-label="C4D 产品建模与渲染作品">
         <WorkSectionHeading number="03" title="C4D 产品建模" subtitle="结构、材质、灯光与镜头协同工作，把产品细节转化成可信的视觉呈现。" right="3D / PRODUCT RENDER" />
         <ModelComparison items={modelComparisonItems} />
-        <C4DMasonryGallery items={c4dItems} onSelect={setActiveC4DIndex} ariaLabel="C4D 产品建模与渲染作品" />
-        <VIImageLightbox images={c4dLightboxImages} activeIndex={activeC4DIndex} onClose={closeC4DLightbox} onStep={stepC4DLightbox} label="C4D 产品建模与渲染大图预览" />
+        <C4DMasonryGallery items={c4dItems} ariaLabel="C4D 产品建模与渲染作品" />
       </section>
 
       <section className="work-category" id="aigc" aria-label="AIGC 视觉探索作品">
@@ -879,8 +695,7 @@ function Projects() {
                 <AIGCFontGallery items={fontGenerationWorks.slice(1)} />
               </>
               : activeAigcCategory.key === 'illustration' ? <>
-                <AIGCIllustrationGallery items={illustrationItems} onSelect={setActiveIllustrationIndex} />
-                <VIImageLightbox images={illustrationItems} activeIndex={activeIllustrationIndex} onClose={closeIllustrationLightbox} onStep={stepIllustrationLightbox} label="插画作品大图预览" />
+                <AIGCIllustrationGallery items={illustrationItems} />
               </>
               : <>
                 <ImageSlot number="04.01" title={`${activeAigcCategory.label}主视觉`} note="" ratio={2.32} feature imageId={activeAigcCategory.featureId} />

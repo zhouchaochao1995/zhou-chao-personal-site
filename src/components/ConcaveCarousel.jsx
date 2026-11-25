@@ -12,7 +12,6 @@ export default function ConcaveCarousel({
   speed = 0.16,
   interval = 4,
   pauseOnHover = true,
-  onSelect,
   className = '',
   id,
   ariaLabel = '线下物料作品轮播',
@@ -171,11 +170,10 @@ export default function ConcaveCarousel({
             className={`concave-panel${offset === 0 ? ' is-centered' : ''}${item.src ? ' has-image' : ' is-empty'}`}
             type="button"
             style={style}
-            aria-label={item.src ? `查看${item.title || `第 ${index + 1} 张作品`}` : `${item.title || `第 ${index + 1} 张`}图片待补充`}
+            aria-label={item.src ? (offset === 0 ? `当前显示${item.title || `第 ${index + 1} 张作品`}` : `切换到${item.title || `第 ${index + 1} 张作品`}`) : `${item.title || `第 ${index + 1} 张`}图片待补充`}
             onClick={() => {
               if (draggedRef.current) return;
               if (offset !== 0) goToIndex(index);
-              else if (item.src) onSelect?.(item, index);
             }}
           >
             <span className="concave-panel-media">
