@@ -25,6 +25,42 @@
   box-shadow: 0 14px 32px rgba(0, 0, 0, .22);
 }
 
+.c4d-masonry-gallery.is-collapsed .c4d-masonry-card:nth-child(n + 17) {
+  display: none;
+}
+
+.c4d-masonry-expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 152px;
+  margin: 28px auto 0;
+  padding: 12px 20px;
+  border: 1px solid rgba(192, 237, 121, .4);
+  border-radius: 999px;
+  color: var(--acid, #c0ed79);
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color .22s ease, background-color .22s ease, border-color .22s ease;
+}
+
+.c4d-masonry-expand:hover {
+  color: #131510;
+  border-color: var(--acid, #c0ed79);
+  background: var(--acid, #c0ed79);
+}
+
+.c4d-masonry-expand-icon {
+  transition: transform .22s ease;
+}
+
+.c4d-masonry-expand[aria-expanded="true"] .c4d-masonry-expand-icon {
+  transform: rotate(180deg);
+}
+
 .c4d-masonry-media {
   display: block;
   width: 100%;
@@ -40,9 +76,12 @@
 
 @media (max-width: 1024px) {
   .c4d-masonry-gallery { columns: 3; margin-top: 48px; }
+  .c4d-masonry-gallery.is-collapsed .c4d-masonry-card:nth-child(n + 13) { display: none; }
 }
 
 @media (max-width: 680px) {
   .c4d-masonry-gallery { columns: 2; column-gap: 10px; margin-top: 38px; }
   .c4d-masonry-card { margin-bottom: 10px; border-radius: 12px; }
+  .c4d-masonry-gallery.is-collapsed .c4d-masonry-card:nth-child(n + 9) { display: none; }
+  .c4d-masonry-expand { margin-top: 20px; }
 }
