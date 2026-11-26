@@ -41,7 +41,7 @@ export default function C4DMasonryGallery({ items = [], ariaLabel = 'C4D 产品�
           <figure
             key={item.src}
             className="c4d-masonry-card"
-            style={{ '--c4d-image-ratio': item.ratio || 1 }}
+            style={{ '--c4d-image-ratio': item.displayRatio || item.ratio || 1 }}
           >
             <span className="c4d-masonry-media">
               <img
@@ -49,6 +49,7 @@ export default function C4DMasonryGallery({ items = [], ariaLabel = 'C4D 产品�
                 alt={item.alt || ''}
                 loading="lazy"
                 decoding="async"
+                style={{ objectFit: item.objectFit || 'contain', objectPosition: 'center' }}
               />
             </span>
           </figure>

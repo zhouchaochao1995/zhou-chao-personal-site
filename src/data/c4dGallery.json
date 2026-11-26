@@ -965,7 +965,9 @@
         "category":  "product",
         "width":  2000,
         "height":  2000,
-        "ratio":  1
+        "ratio":  1,
+        "displayRatio":  1.77778,
+        "objectFit":  "cover"
     },
     {
         "src":  "/images/c4d-gallery/product-122.jpg",
