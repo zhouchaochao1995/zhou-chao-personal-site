@@ -40,7 +40,7 @@ export default function C4DMasonryGallery({ items = [], ariaLabel = 'C4D 产品�
         {items.map((item) => (
           <figure
             key={item.src}
-            className="c4d-masonry-card"
+            className={`c4d-masonry-card${item.objectFit === 'cover' ? ' c4d-masonry-card--landscape-crop' : ''}`}
             style={{ '--c4d-image-ratio': item.displayRatio || item.ratio || 1 }}
           >
             <span className="c4d-masonry-media">

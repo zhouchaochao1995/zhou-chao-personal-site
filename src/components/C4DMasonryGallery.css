@@ -67,6 +67,15 @@
   aspect-ratio: var(--c4d-image-ratio, 1);
 }
 
+.c4d-masonry-card--landscape-crop .c4d-masonry-media {
+  aspect-ratio: 16 / 9;
+}
+
+.c4d-masonry-card--landscape-crop .c4d-masonry-media img {
+  object-fit: cover;
+  object-position: center;
+}
+
 .c4d-masonry-media img {
   display: block;
   width: 100%;
